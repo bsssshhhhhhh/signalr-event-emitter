@@ -2,7 +2,7 @@ import type { HubConnection } from '@microsoft/signalr';
 import { createEventEmitter } from 'simple-typed-events';
 
 /**
- * Creates and attaches a strongly-typed event emitter interface to the hub connection
+ * Creates and attaches a strongly-typed event listener interface to the hub connection
  * 
  * Supply a type containing all of the event keys and the parameters that are expected.
  * Note that due to the way the SignalR client library is implemented, all event names must be lowercase
@@ -12,9 +12,9 @@ import { createEventEmitter } from 'simple-typed-events';
  */
 export function createSignalrEventEmitter<
   Methods extends {
-    [eventName in EventNames]: (...args: never[]) => void;
+    [methodName in MethodNames]: (...args: never[]) => void;
   },
-  EventNames extends Lowercase<string & keyof Methods> = Lowercase<string & keyof Methods>
+  MethodNames extends Lowercase<string & keyof Methods> = Lowercase<string & keyof Methods>
 >(hubConnection: HubConnection) {
   const emitter = createEventEmitter<Methods>();
 
@@ -25,7 +25,7 @@ export function createSignalrEventEmitter<
         return target[prop];
       }
 
-      return [(...args: Parameters<Methods[EventNames]>) => emitter.emit(prop as EventNames, ...args)];
+      return [(...args: Parameters<Methods[MethodNames]>) => emitter.emit(prop as MethodNames, ...args)];
     }
   });
 

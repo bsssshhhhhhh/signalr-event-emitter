@@ -1,5 +1,7 @@
 # signalr-event-emitter
 
+[![npm](https://img.shields.io/npm/v/signalr-event-emitter)](https://www.npmjs.com/package/signalr-event-emitter)
+
 A utility function that allows for receiving method invocations from a SignalR hub in a type-safe way
 
 ## Why?

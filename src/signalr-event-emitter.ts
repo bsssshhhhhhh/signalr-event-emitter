@@ -1,5 +1,4 @@
 import type { HubConnection } from '@microsoft/signalr';
-import curry from 'lodash/curry';
 import { createEventEmitter } from 'simple-typed-events';
 
 /**
@@ -19,10 +18,6 @@ export function createSignalrEventEmitter<
 >(hubConnection: HubConnection) {
   const emitter = createEventEmitter<Methods>();
 
-  const signalrMethodHandler = curry((method: keyof Methods, ...args: unknown[]) => {
-    emitter.emit(method as EventNames, ...args as Parameters<Methods[EventNames]>);
-  }, 2);
-
   // @ts-expect-error `methods` is not on the public interface
   hubConnection.methods = new Proxy(hubConnection.methods, {
     get(target, prop) {
@@ -30,7 +25,9 @@ export function createSignalrEventEmitter<
         return target[prop];
       }
 
-      return [signalrMethodHandler(prop as EventNames)];
+      return [
+        (...args: never[]) => { emitter.emit(prop as EventNames, ...args as Parameters<Methods[EventNames]>) }
+      ];
     }
   });
 

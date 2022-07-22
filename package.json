@@ -33,7 +33,6 @@
     "vite-plugin-dts": "^1.4.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "simple-typed-events": "^1.1.0"
   },
   "peerDependencies": {

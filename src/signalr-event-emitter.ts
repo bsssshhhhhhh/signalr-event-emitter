@@ -18,7 +18,7 @@ export function createSignalrEventEmitter<
 >(hubConnection: HubConnection) {
   const emitter = createEventEmitter<Methods>();
 
-  // @ts-expect-error `methods` is not on the public interface
+  // @ts-expect-error `methods` is not on the public interface for HubConnection
   hubConnection.methods = new Proxy(hubConnection.methods, {
     get(target, prop) {
       if (typeof prop === 'symbol') {

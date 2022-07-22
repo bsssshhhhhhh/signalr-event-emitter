@@ -8,7 +8,7 @@ import { createEventEmitter } from 'simple-typed-events';
  * Note that due to the way the SignalR client library is implemented, all event names must be lowercase
  * 
  * @param hubConnection SignalR HubConnection
- * @returns 
+ * @returns on, once, off functions
  */
 export function createSignalrEventEmitter<
   Methods extends {
@@ -25,7 +25,13 @@ export function createSignalrEventEmitter<
         return target[prop];
       }
 
-      return [(...args: Parameters<Methods[MethodNames]>) => emitter.emit(prop as MethodNames, ...args)];
+      const emit = (...args: Parameters<Methods[MethodNames]>) => emitter.emit(prop as MethodNames, ...args);
+
+      if (target[prop]) {
+        return [target[prop], emit];
+      }
+
+      return [emit];
     }
   });
 

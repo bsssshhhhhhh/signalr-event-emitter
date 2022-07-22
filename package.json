@@ -14,7 +14,7 @@
     "events",
     "event emitter", 
     "signalr",
-    "microsoft"
+    "typescript"
   ],
   "files": [
     "dist",

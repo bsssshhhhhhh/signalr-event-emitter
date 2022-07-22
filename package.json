@@ -1,7 +1,11 @@
 {
   "name": "signalr-event-emitter",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A nicer way to receive SignalR events",
+  "author": {
+    "name": "Brian Simon",
+    "url": "https://github.com/bsssshhhhhhh"
+  },
   "license": "Apache-2.0",
   "types": "dist/main.d.ts",
   "module": "dist/signalr-event-emitter.mjs",

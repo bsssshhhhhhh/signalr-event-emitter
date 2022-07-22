@@ -25,7 +25,7 @@ export function createSignalrEventEmitter<
         return target[prop];
       }
 
-      return [(...args: never[]) => emitter.emit(prop as EventNames, ...args as Parameters<Methods[EventNames]>)];
+      return [(...args: Parameters<Methods[EventNames]>) => emitter.emit(prop as EventNames, ...args)];
     }
   });
 

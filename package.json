@@ -1,0 +1,38 @@
+{
+  "name": "signalr-event-emitter",
+  "version": "0.0.1",
+  "description": "A nicer way to receive SignalR events",
+  "license": "Apache-2.0",
+  "types": "dist/main.d.ts",
+  "module": "dist/signalr-event-emitter.mjs",
+  "repository": "https://github.com/bsssshhhhhhh/signalr-event-emitter",
+  "keywords": [
+    "events",
+    "event emitter", 
+    "signalr",
+    "microsoft"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@microsoft/signalr": "^6.0.7",
+    "@types/lodash": "^4.14.182",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.0",
+    "vite-plugin-dts": "^1.4.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "simple-typed-events": "^1.1.0"
+  },
+  "peerDependencies": {
+    "@microsoft/signalr": "^6.0.7"
+  }
+}

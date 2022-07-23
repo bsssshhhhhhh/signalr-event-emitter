@@ -14,7 +14,9 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npx yarn
+      - run: npx yarn test
       - run: npx yarn build
+      - run: npx yarn lint
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

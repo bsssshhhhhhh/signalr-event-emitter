@@ -27,8 +27,8 @@ export function createSignalrEventEmitter<
 
       const emit = (...args: Parameters<Methods[MethodNames]>) => emitter.emit(prop as MethodNames, ...args);
 
-      if (target[prop]) {
-        return [target[prop], emit];
+      if (target[prop] && Array.isArray(target[prop])) {
+        return [...target[prop], emit];
       }
 
       return [emit];

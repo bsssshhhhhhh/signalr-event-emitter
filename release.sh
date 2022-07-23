@@ -3,3 +3,4 @@ git clean -dfx
 
 git commit --allow-empty -m $VERSION
 git tag -a $VERSION -m $VERSION
+echo run this command to release:   git push --follow-tags

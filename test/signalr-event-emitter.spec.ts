@@ -59,4 +59,32 @@ describe('methods proxy', () => {
     // @ts-expect-error
     expect(hubConnection.methods[sym]).toBe(5);
   });
+
+  it('should call handlers when the emit function is called for listeners attached with `on`', () => {
+    const handlers = [vi.fn(), vi.fn(), vi.fn()];
+
+    handlers.forEach(handler => {
+      emitter.on('method1', handler);
+    });
+    // @ts-expect-error
+    hubConnection.methods.method1[0]('hello');
+
+    handlers.forEach(handler => {
+      expect(handler).toBeCalledWith('hello');
+    });
+  });
+
+  it('should call handlers when the emit function is called for listeners attached with `once`', () => {
+    const handlers = [vi.fn(), vi.fn(), vi.fn()];
+
+    handlers.forEach(handler => {
+      emitter.once('method1', handler);
+    });
+    // @ts-expect-error
+    hubConnection.methods.method1[0]('hello');
+
+    handlers.forEach(handler => {
+      expect(handler).toBeCalledWith('hello');
+    });
+  });
 });

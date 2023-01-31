@@ -6,7 +6,7 @@ A utility function that allows for receiving method invocations from a SignalR h
 
 ## Why?
 
-Because the SignalR client library leaves a lot to be desired in terms of nice typescript support.  The `createSignalrEventEmitter` function in this package allows for defining event names and parameters via TypeScript.
+The `createSignalrEventEmitter` function in this package allows for defining event names and parameters via TypeScript
 
 
 ## Example
